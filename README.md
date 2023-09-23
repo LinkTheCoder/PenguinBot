@@ -1,5 +1,5 @@
 # Morgana Bot
 A Persona 5 Discord Bot 🤖
 
-> [!NOTE]
-> Currently under development
+> [!IMPORTANT]
+> Currently under development, more feature to be coming. . .
