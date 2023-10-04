@@ -5,4 +5,4 @@
 <a href="https://discord.com/api/oauth2/authorize?client_id=1154758471481307176&permissions=2147486720&scope=applications.commands%20bot">
 <img src="https://i.imgur.com/al5augv.png" width="13%" />
 <a/>
-<img src="https://i.imgur.com/EW2NwFm.png" width="50%" />
+<img src="https://i.imgur.com/EW2NwFm.png" width="70%" />
