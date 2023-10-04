@@ -1,13 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 
-// Define an array of quotes and an array of image file paths
-const quotes = [
-    'Quote 1',
-    'Quote 2',
-    'Quote 3',
-    // Add more quotes as needed
-];
-
+// Define an array of image file paths
 const imagePaths = [
     './img/quotes/MorganaQuote.png',
     './img/quotes/RyujiQuote.png',
@@ -18,15 +11,13 @@ const imagePaths = [
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('quotes')
-        .setDescription('Replies with random quotes!'),
+        .setDescription('Replies with a random image!'),
     async execute(interaction) {
-        // Select a random quote and image path
-        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        // Select a random image path
         const randomImagePath = imagePaths[Math.floor(Math.random() * imagePaths.length)];
 
-        // Send a message with the random quote and image attachment
+        // Send only the random image as a response
         await interaction.reply({
-            content: randomQuote,
             files: [
                 {
                     attachment: randomImagePath,
