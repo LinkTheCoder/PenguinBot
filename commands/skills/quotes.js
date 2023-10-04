@@ -9,9 +9,9 @@ const quotes = [
 ];
 
 const imagePaths = [
-    './img/quoetes/MorganaQuote.png',
-    './img/quoetes/RyujiQuote.png',
-    './img/quoetes/FutabaQuote.png',
+    './img/quotes/MorganaQuote.png',
+    './img/quotes/RyujiQuote.png',
+    './img/quotes/FutabaQuote.png',
     // Add more image paths as needed
 ];
 
