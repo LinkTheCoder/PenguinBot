@@ -1,4 +1,4 @@
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 
 // Define an array of quiz pairs, where each pair contains two image paths
 const quizPairs = [
@@ -40,7 +40,7 @@ module.exports = {
         const buttonComponents = buttons.map(button => new ButtonBuilder()
             .setCustomId(button.customId)
             .setLabel(button.label)
-            .setStyle(ButtonStyle.Primary) // Change button style as needed
+            .setStyle(ButtonStyle.PRIMARY)
         );
 
         // Create an action row with the buttons
@@ -63,7 +63,51 @@ module.exports = {
                 },
             ],
             embeds: [embed],
-            components: [actionRow], // Add the action row with buttons
+            components: [actionRow],
         });
+
+        // Wait for the user to interact with the buttons for quiz pair 1
+        if (randomQuizIndex === 0) {
+            const filter = i => i.customId.startsWith('option'); // Filter for option buttons
+            const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 }); // Adjust the time as needed
+
+            collector.on('collect', async (buttonInteraction) => {
+                const selectedLabel = buttons.find(button => button.customId === buttonInteraction.customId)?.label;
+
+                if (selectedLabel === '1:1.414') {
+                    // Correct answer for quiz pair 1
+                    await buttonInteraction.reply({ content: 'Correct answer!', ephemeral: true });
+                } else {
+                    // Wrong answer for quiz pair 1
+                    await buttonInteraction.reply({ content: 'Wrong answer.', ephemeral: true });
+                }
+            });
+
+            collector.on('end', () => {
+                // Cleanup or handle the end of the interaction for quiz pair 1 if needed
+            });
+        }
+
+        // Wait for the user to interact with the buttons for quiz pair 2
+        if (randomQuizIndex === 1) {
+            const filter = i => i.customId.startsWith('choice'); // Filter for choice buttons
+            const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 }); // Adjust the time as needed
+
+            collector.on('collect', async (buttonInteraction) => {
+                const selectedLabel = buttons.find(button => button.customId === buttonInteraction.customId)?.label;
+
+                if (selectedLabel === 'The Heian period') {
+                    // Correct answer for quiz pair 2
+                    await buttonInteraction.reply({ content: 'Correct answer!', ephemeral: true });
+                } else {
+                    // Wrong answer for quiz pair 2
+                    await buttonInteraction.reply({ content: 'Wrong answer.', ephemeral: true });
+                }
+            });
+
+            collector.on('end', () => {
+                // Cleanup or handle the end of the interaction for quiz pair 2 if needed
+            });
+        }
     },
 };
