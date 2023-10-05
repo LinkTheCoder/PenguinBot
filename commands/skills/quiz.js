@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { ActionRow, Button, ButtonStyle } = require('discord.js');
+const { MessageActionRow, MessageButton, MessageButtonStyles } = require('discord.js');
 
 // Define an array of quiz pairs, where each pair contains two image paths
 const quizPairs = [
@@ -37,15 +37,15 @@ module.exports = {
         // Get the corresponding button labels and custom IDs from buttonInfo array
         const buttons = buttonInfo[randomQuizIndex];
 
-        // Create an array of Button objects for the buttons
-        const buttonComponents = buttons.map(button => new Button()
+        // Create an array of MessageButton objects for the buttons
+        const buttonComponents = buttons.map(button => new MessageButton()
             .setLabel(button.label)
             .setCustomId(button.customId)
-            .setStyle(ButtonStyle.Primary) // Change button style as needed
+            .setStyle(MessageButtonStyles.PRIMARY) // Change button style as needed
         );
 
         // Create an ActionRow with the buttons
-        const actionRow = new ActionRow()
+        const actionRow = new MessageActionRow()
             .addComponents(buttonComponents);
 
         // Create an embed with the second image and custom buttons
