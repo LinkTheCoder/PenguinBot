@@ -2,8 +2,8 @@ const { SlashCommandBuilder } = require('discord.js');
 
 // Define an array of quiz pairs, where each pair contains two image paths
 const quizPairs = [
-    ['./img/quiz/MsUsamiSilverRatio.png', './img/quiz/SilverRatio.png'],
-    ['./img/quiz/MrInuiYoshitsune.png', './img/quiz/Yoshitsune.png'],
+    ['./img/quiz/MsUsamiSilverRatio.png', './img/quiz/MsUsamiSilverRatio.png'],
+    ['./img/quiz/MrInuiYoshitsune.png', './img/quiz/MrInuiYoshitsune.png'],
     // Add more quiz pairs here as needed
 ];
 
