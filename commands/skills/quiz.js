@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
-const { MessageActionRow, MessageButton, MessageButtonStyles } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder } = require('discord.js');
 
 // Define an array of quiz pairs, where each pair contains two image paths
 const quizPairs = [
@@ -37,25 +36,25 @@ module.exports = {
         // Get the corresponding button labels and custom IDs from buttonInfo array
         const buttons = buttonInfo[randomQuizIndex];
 
-        // Create an array of MessageButton objects for the buttons
-        const buttonComponents = buttons.map(button => new MessageButton()
-            .setLabel(button.label)
+        // Create buttons for the quiz options
+        const buttonComponents = buttons.map(button => new ButtonBuilder()
             .setCustomId(button.customId)
-            .setStyle(MessageButtonStyles.PRIMARY) // Change button style as needed
+            .setLabel(button.label)
+            .setStyle(ButtonStyle.Primary) // Change button style as needed
         );
 
-        // Create an ActionRow with the buttons
-        const actionRow = new MessageActionRow()
+        // Create an action row with the buttons
+        const actionRow = new ActionRowBuilder()
             .addComponents(buttonComponents);
 
-        // Create an embed with the second image and custom buttons
+        // Create an embed with the second image
         const embed = {
             image: {
                 url: imageUrl,
             },
         };
 
-        // Send the first image as an attachment and the embed with custom buttons as a response
+        // Send the first image as an attachment and the embed with buttons as a response
         await interaction.reply({
             files: [
                 {
@@ -64,7 +63,7 @@ module.exports = {
                 },
             ],
             embeds: [embed],
-            components: [actionRow], // Add the ActionRow with buttons
+            components: [actionRow], // Add the action row with buttons
         });
     },
 };
