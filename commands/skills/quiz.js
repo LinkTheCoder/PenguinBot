@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder } = require('discord.js');
 
 // Define an array of quiz pairs, where each pair contains two image paths
 const quizPairs = [
@@ -83,7 +83,7 @@ module.exports = {
                 }
             });
 
-            collector.on('end', () => {
+            collector.on('end', (collected) => {
                 // Cleanup or handle the end of the interaction for quiz pair 1 if needed
             });
         }
@@ -105,7 +105,7 @@ module.exports = {
                 }
             });
 
-            collector.on('end', () => {
+            collector.on('end', (collected) => {
                 // Cleanup or handle the end of the interaction for quiz pair 2 if needed
             });
         }
