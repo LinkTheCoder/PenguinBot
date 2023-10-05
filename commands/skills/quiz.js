@@ -18,7 +18,6 @@ module.exports = {
 
         // Create an embed with the second image
         const embed = {
-            title: 'Quiz',
             image: {
                 url: `attachment://${randomQuiz[1]}`,
             },
