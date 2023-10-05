@@ -10,15 +10,15 @@ const quizPairs = [
 // Define an array of custom button labels and custom IDs for each quiz pair
 const buttonInfo = [
     [
-        { label: '1:1.732', customId: '732' },
-        { label: '1:1.414', customId: '414' },
-        { label: '1:3.303', customId: '303' },
+        { label: '1:1.732', customId: 'option1' },
+        { label: '1:1.414', customId: 'option2' },
+        { label: '1:3.303', customId: 'option3' },
     ],
     [
         // Define custom button labels and custom IDs for the second quiz pair
-        { label: 'The Muromachi Period', customId: 'muromachi' },
-        { label: 'The Kamakura period', customId: 'kamakura' },
-        { label: 'The Heian period', customId: 'heian' },
+        { label: 'The Muromachi Period', customId: 'choiceA' },
+        { label: 'The Kamakura period', customId: 'choiceB' },
+        { label: 'The Heian period', customId: 'choiceC' },
     ],
     // Add more button labels and custom IDs for additional quiz pairs here as needed
 ];
@@ -83,7 +83,7 @@ module.exports = {
                 }
             });
 
-            collector.on('end', () => {
+            collector.on('end', (collected) => {
                 // Cleanup or handle the end of the interaction for quiz pair 1 if needed
             });
         }
@@ -105,7 +105,7 @@ module.exports = {
                 }
             });
 
-            collector.on('end', () => {
+            collector.on('end', (collected) => {
                 // Cleanup or handle the end of the interaction for quiz pair 2 if needed
             });
         }
