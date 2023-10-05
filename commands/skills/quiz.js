@@ -10,7 +10,7 @@ const quizPairs = [
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('quiz')
-        .setDescription('Replies with a random school quiz with an image and an embed!'),
+        .setDescription('Replies with a random school quiz!'),
     async execute(interaction) {
         // Select a random quiz pair
         const randomQuizIndex = Math.floor(Math.random() * quizPairs.length);
