@@ -7,6 +7,22 @@ const quizPairs = [
     // Add more quiz pairs here as needed
 ];
 
+// Define an array of custom button labels and custom IDs for each quiz pair
+const buttonInfo = [
+    [
+        { label: '1:1.732', customId: 'option1' },
+        { label: '1:1.414', customId: 'option2' },
+        { label: '1:3.303', customId: 'option3' },
+    ],
+    [
+        // Define custom button labels and custom IDs for the second quiz pair
+        { label: 'The Muromachi Period', customId: 'choiceA' },
+        { label: 'The Kamakura period', customId: 'choiceB' },
+        { label: 'The Heian period', customId: 'choiceC' },
+    ],
+    // Add more button labels and custom IDs for additional quiz pairs here as needed
+];
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('quiz')
@@ -17,14 +33,28 @@ module.exports = {
         const randomQuiz = quizPairs[randomQuizIndex];
         const imageUrl = randomQuiz[1];
 
-        // Create an embed with the second image
+        // Get the corresponding button labels and custom IDs from buttonInfo array
+        const buttons = buttonInfo[randomQuizIndex];
+
+        // Create an embed with the second image and custom buttons
         const embed = {
             image: {
                 url: imageUrl,
             },
+            components: [
+                {
+                    type: 'ACTION_ROW',
+                    components: buttons.map(button => ({
+                        type: 'BUTTON',
+                        label: button.label,
+                        customId: button.customId,
+                        style: 'PRIMARY', // Change button style as needed
+                    })),
+                },
+            ],
         };
 
-        // Send the first image as an attachment and the embed as a response
+        // Send the first image as an attachment and the embed with custom buttons as a response
         await interaction.reply({
             files: [
                 {
