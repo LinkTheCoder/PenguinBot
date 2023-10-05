@@ -40,7 +40,7 @@ module.exports = {
         const buttonComponents = buttons.map(button => new ButtonBuilder()
             .setCustomId(button.customId)
             .setLabel(button.label)
-            .setStyle(ButtonStyle.PRIMARY)
+            .setStyle(ButtonStyle.Primary)
         );
 
         // Create an action row with the buttons
