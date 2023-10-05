@@ -15,12 +15,11 @@ module.exports = {
         // Select a random quiz pair
         const randomQuizIndex = Math.floor(Math.random() * quizPairs.length);
         const randomQuiz = quizPairs[randomQuizIndex];
-        const imageUrl = 'https://i.imgur.com/QpR5z2G.png'
 
         // Create an embed with the second image
         const embed = {
             image: {
-                url: imageUrl,
+                url: randomQuiz[1],
             },
         };
 
