@@ -6,7 +6,7 @@
   
 > [!NOTE]
 > 
-> ```/list``` Shows alist of all 18 penguin species!
+> ```/list``` Shows a list of all 18 penguin species!
 > 
 > ```/facts``` Show facts of a penguin species of your choice!
 > 
