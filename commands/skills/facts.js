@@ -15,7 +15,7 @@ module.exports = {
     .setDescription('Facts about selected penguin species')
     .addStringOption(option =>
       option.setName('species')
-        .setDescription('Name of the penguin species')
+        .setDescription('Name of the penguin species (eg. king, king penguin, kingpenguin)')
         .setRequired(true),
     ),
     async execute(interaction) {
