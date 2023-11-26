@@ -10,3 +10,6 @@
 > 
 > ```/facts``` Show facts of a penguin species of your choice!
 > 
+> ```/endangered``` Lists all current endangered penguin species!
+>
+> ```/world-penguin-day``` Countdown to World Penguin Day!
