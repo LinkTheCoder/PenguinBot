@@ -13,3 +13,6 @@
 > ```/endangered``` Lists all current endangered penguin species!
 >
 > ```/world-penguin-day``` Countdown to World Penguin Day!
+
+## Guide
+Visit the project's wiki: [Penguin Bot Wiki](https://github.com/LinkTheCoder/PenguinBot/wiki)
