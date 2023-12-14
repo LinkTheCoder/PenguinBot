@@ -6,11 +6,9 @@
   
 > [!NOTE]
 > 
-> ```/list``` Shows a list of all 18 penguin species!
+> ```/list``` ```filter``` Shows a list of penguin species with filter options
 > 
 > ```/facts``` ```species``` Show facts of a penguin species of your choice!
-> 
-> ```/endangered``` Lists all current endangered penguin species!
 >
 > ```/world-penguin-day``` ```dm``` Send a DM to user on World Penguin Day!
 > 
