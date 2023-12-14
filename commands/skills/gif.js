@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 const axios = require('axios');
 require('dotenv').config(); // Load environment variables from the .env file
 
-const tenorAPIKey = process.env.tenorAPIKey;
+const tenorAPIKey = process.env.TENOR_KEY;
 
 module.exports = {
   data: new SlashCommandBuilder()

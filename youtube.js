@@ -8,7 +8,7 @@ const client = new Client({
 });
 
 const channelId = '1184800068918841384';
-const apiKey = process.env.YoutubeKey; // Access environment variable using process.env
+const apiKey = process.env.YOUTUBE_KEY; // Access environment variable using process.env
 const channelIdToTrack = 'UCtckgmUcpzqGnzcs7xEqMzQ';
 
 // Load the last fetched video IDs from a file, or initialize it as an empty array
