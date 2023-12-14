@@ -1,30 +1,43 @@
-const { SlashCommandBuilder } = require('discord.js');
-
-// Function to calculate days left until a specific date
-function daysUntil(targetDate) {
-  const currentDate = new Date();
-  const targetDateTime = new Date(targetDate);
-  targetDateTime.setFullYear(currentDate.getFullYear()); // Set the target year to the current year
-  if (targetDateTime < currentDate) {
-    targetDateTime.setFullYear(currentDate.getFullYear() + 1); // If target date has passed for this year, set it to next year
-  }
-  const differenceInTime = targetDateTime.getTime() - currentDate.getTime();
-  const differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
-  return differenceInDays;
-}
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const fs = require('fs');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('world-penguin-day')
-    .setDescription('Countdown to World Penguin Day'),
+    .setDescription('Choose to receive or stop receiving DMs on World Penguin Day.')
+    .addStringOption(option =>
+      option
+        .setName('dm')
+        .setDescription('Choose an DM option')
+        .setRequired(true)
+        .addChoices(
+          { name: 'Receive', value: 'receive' },
+          { name: 'Stop', value: 'stop' }
+        )
+    ),
   async execute(interaction) {
-    // Set the target date for World Penguin Day (April 25th)
-    const worldPenguinDayDate = new Date('04-25');
+    const { user } = interaction;
+    const userId = user.id;
+    const dm = interaction.options.getString('dm');
 
-    // Calculate days left
-    const daysLeft = daysUntil(worldPenguinDayDate);
+    if (dm === 'receive') {
+      // Code for setting the user's preference to receive DMs on World Penguin Day
+      const userData = require('../../user.json') || {};
 
-    // Respond with the countdown
-    await interaction.reply(`🐧 World Penguin Day is in ${daysLeft} days! 🐧`);
+      userData[userId] = { receiveDMs: true };
+      fs.writeFileSync('user.json', JSON.stringify(userData, null, 2));
+      await interaction.reply({ content: 'You will receive a DM on World Penguin Day!', ephemeral: true });
+    } else if (dm === 'stop') {
+      // Code for stopping the user from receiving DMs on World Penguin Day
+      const userData = require('../../user.json') || {};
+
+      if (userData[userId]) {
+        userData[userId].receiveDMs = false;
+        fs.writeFileSync('user.json', JSON.stringify(userData, null, 2));
+        await interaction.reply({ content: 'You will no longer receive DMs on World Penguin Day.', ephemeral: true });
+      } else {
+        await interaction.reply({ content: 'You are not set to receive DMs on World Penguin Day.', ephemeral: true });
+      }
+    }
   },
 };

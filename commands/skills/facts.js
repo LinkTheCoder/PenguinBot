@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const penguinFacts = require('../../penguinFacts.json');
+const penguinFacts = require('../../data/penguinFacts.json');
 
 function normalizeString(str) {
   // Normalize the string to remove accents and special characters

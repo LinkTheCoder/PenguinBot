@@ -1,7 +1,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-const { token } = require('./config.json');
+require('dotenv').config();
+const { checkForNewVideo } = require('./youtube.js');
+const cron = require('node-cron');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -25,6 +27,7 @@ for (const folder of commandFolders) {
 
 client.once(Events.ClientReady, () => {
 	console.log('Ready!');
+	checkPenguinDay();
 });
 
 client.on(Events.InteractionCreate, async interaction => {
@@ -46,4 +49,46 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 });
 
-client.login(token);
+client.login(process.env.TOKEN);
+
+// CHECK WORLD PENGUIN DAY
+function checkPenguinDay() {
+	const userData = require('./user.json');
+	const currentDate = new Date();
+	const currentYear = currentDate.getFullYear();
+	const currentMonth = currentDate.getMonth() + 1; // Months are 0-indexed in JavaScript.
+	const currentDay = currentDate.getDate();
+	const penguinDay = { month: 4, day: 25 };
+
+	// Check for World Penguin Day and send DMs to users who opted to receive them.
+	for (const userId in userData) {
+		const { receiveDMs, lastSentYear } = userData[userId];
+
+		if (receiveDMs && currentMonth === penguinDay.month && currentDay === penguinDay.day && currentYear !== lastSentYear) {
+			// It's World Penguin Day! Send a DM.
+			client.users.send(userId, {
+				content: '## Happy World Penguin Day! 🎉',
+				files: [
+					{
+						attachment: './img/PenguinDay.gif',
+						name: 'PenguinDay.gif',
+					},
+				],
+			});
+
+			// Update the last sent year to the current year.
+			userData[userId].lastSentYear = currentYear;
+		}
+	}
+
+	// Save the updated data back to the JSON file.
+	fs.writeFileSync('user.json', JSON.stringify(userData, null, 2));
+
+	// Schedule the next check
+	setTimeout(checkPenguinDay, 60 * 60 * 1000);
+}
+
+// Schedule the YouTube video check every 5 minutes
+cron.schedule('*/5 * * * *', () => {
+	checkForNewVideo(client);
+  });
