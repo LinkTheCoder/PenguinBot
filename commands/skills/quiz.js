@@ -7,7 +7,7 @@ module.exports = {
         .setDescription('Get a random penguin quiz'),
                 
     async execute(interaction) {
-        const filePath = `./data/quiz.json`;
+        const filePath = `../../data/quiz.json`;
 
         try {
             const rawData = fs.readFileSync(filePath);
