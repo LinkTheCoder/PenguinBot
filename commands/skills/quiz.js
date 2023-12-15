@@ -1,5 +1,6 @@
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder } = require('discord.js');
 const fs = require('fs');
+const quiz = require('../../data/quiz.json');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -7,11 +8,9 @@ module.exports = {
         .setDescription('Get a random penguin quiz'),
                 
     async execute(interaction) {
-        const filePath = `../../data/quiz.json`;
-
         try {
-            const rawData = fs.readFileSync(filePath);
-            const data = JSON.parse(rawData);
+            // Use the 'quiz' module instead of reading from a file
+            const data = quiz;
 
             // Select a random quiz question
             const randomQuestionIndex = Math.floor(Math.random() * data.quizzes.length);
