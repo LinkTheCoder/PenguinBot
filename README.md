@@ -17,7 +17,3 @@
 > ```/quiz``` Random penguin quizzes!
 > 
 > ```youtube``` Auto fetch videos from South Koreas most popular penguin Youtuber Pengsoo!
-
-
-## Guide
-Visit the project's wiki: [Penguin Bot Wiki](https://github.com/LinkTheCoder/PenguinBot/wiki)
