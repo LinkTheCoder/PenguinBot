@@ -16,4 +16,3 @@
 >
 > ```/quiz``` Random penguin quizzes!
 > 
-> ```youtube``` Auto fetch videos from South Koreas most popular penguin Youtuber Pengsoo!
