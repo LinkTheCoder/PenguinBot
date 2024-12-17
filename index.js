@@ -2,8 +2,6 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 require('dotenv').config();
-const { checkForNewVideo } = require('./youtube.js');
-const cron = require('node-cron');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -87,8 +85,3 @@ function checkPenguinDay() {
 	// Schedule the next check
 	setTimeout(checkPenguinDay, 60 * 60 * 1000);
 }
-
-// Schedule the YouTube video check every 5 minutes
-cron.schedule('*/5 * * * *', () => {
-	checkForNewVideo(client);
-  });
